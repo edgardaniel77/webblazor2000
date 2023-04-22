@@ -1,14 +1,20 @@
-using Blazor.Data;
+using Blazor;
+using Blazor.Interfaces;
+using Blazor.Servicios;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
-
+Config cadena = new Config(builder.Configuration.GetConnectionString("MySQL"));
+builder.Services.AddSingleton(cadena);
+builder.Services.AddScoped<ILoginServicio, LoginServicio>();
+builder.Services.AddScoped<IUsuarioServicio, UsuarioServicio>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

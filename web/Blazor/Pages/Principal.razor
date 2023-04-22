@@ -1,0 +1,11 @@
+﻿<AuthorizeView Roles="Administrador">
+    <Authorized Context="AuthenticationState">
+        <h2>Bienvenido Administrador</h2>
+    </Authorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="Usuario">
+    <Authorized Context="AuthenticationState">
+        <h2>Bienvenido Usuario</h2>
+    </Authorized>
+</AuthorizeView>
